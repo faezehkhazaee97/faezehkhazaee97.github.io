@@ -23,9 +23,9 @@ I am currently seeking full-time roles in applied machine learning, data science
 
 ## News
 
-- **[2024–2025]** Developing *CELLECTION*, an interpretable multiple-instance learning framework for phenotype prediction from single-cell RNA-seq data.  
-- **[2024–2025]** Working on *ProMod*, a transformer-based model for promoter sequence modeling and gene expression prediction across vertebrate species.  
-- **[2025]** *CELLECTION* and *Varformer* manuscripts currently in preprint preparation.  
+- **[2025–2026]** Developing *CELLECTION*, an interpretable multiple-instance learning framework for phenotype prediction from single-cell RNA-seq data.  
+- **[2025–2026]** Working on *ProMod*, a transformer-based model for promoter sequence modeling and gene expression prediction across vertebrate species.  
+- **[2026]** *CELLECTION* and *Varformer* manuscripts currently in preprint preparation.  
 
 ---
 
