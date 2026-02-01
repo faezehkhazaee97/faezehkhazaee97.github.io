@@ -27,6 +27,4 @@ I am currently seeking full-time roles in applied machine learning, data science
 - **[2025–2026]** Working on *ProMod*, a transformer-based model for promoter sequence modeling and gene expression prediction across vertebrate species.  
 - **[2026]** *CELLECTION* and *Varformer* manuscripts currently in preprint preparation.  
 
----
 
-{% include_relative _includes/publications.md %}
