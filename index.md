@@ -8,7 +8,7 @@ I am a Master's student in Computer Science at the University of California, Dav
 
 I have prior research experience in computer vision and transformer-based models, and I am broadly interested in applying modern machine learning methods—such as self-supervised learning, representation learning, and set-based models—to real-world scientific and data-driven problems.
 
-I am currently seeking full-time roles in applied machine learning, data science, and computational biology.
+I am currently seeking full-time roles in applied machine learning, data engineering, data science, and computational biology.
 
 ---
 
