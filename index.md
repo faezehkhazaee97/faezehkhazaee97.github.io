@@ -4,7 +4,7 @@ layout: homepage
 
 ## About Me
 
-I am a Master's student in Computer Science at the University of California, Davis, working in the Quon Lab on machine learning and computational biology. My research focuses on developing interpretable deep learning models for complex biological and multimodal data, with applications in single-cell genomics, regulatory genomics, and phenotype prediction.
+I am a PhD student in Computer Science at the University of California, Davis, working in the Quon Lab on machine learning and computational biology. My research focuses on developing interpretable deep learning models for complex biological and multimodal data, with applications in single-cell genomics, regulatory genomics, and phenotype prediction.
 
 I have prior research experience in computer vision and transformer-based models, and I am broadly interested in applying modern machine learning methods—such as self-supervised learning, representation learning, and set-based models—to real-world scientific and data-driven problems.
 
