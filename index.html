@@ -492,6 +492,23 @@ body::before {
 .egg { color: var(--muted); }
 .egg kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.85em; border: 1px solid var(--rule); border-radius: 4px; padding: 0 0.3em; }
 
+.mail-wrap { position: relative; }
+.mail-pop {
+  position: absolute; left: 0; top: calc(100% + 0.4rem); z-index: 12;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.75rem;
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 10px;
+  padding: 0.6rem 0.8rem; box-shadow: 0 10px 28px -14px rgba(0,0,0,.35);
+  font-size: 0.9375rem; white-space: nowrap;
+  width: max-content; max-width: calc(100vw - 2.5rem);
+}
+.mail-pop[hidden] { display: none; }
+.mail-addr { font-weight: 600; color: var(--ink); user-select: all; }
+.mail-pop button {
+  font: inherit; font-size: 0.875rem; cursor: pointer;
+  border: 1px solid var(--rule); background: var(--plate); color: var(--ink);
+  border-radius: 999px; padding: 0.1rem 0.7rem;
+}
+
 /* Slideshow of research figures */
 .carousel { margin-top: 1.75rem; }
 .tabs { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-bottom: 0.75rem; }
@@ -673,7 +690,13 @@ body::before {
         <li style="--dot:#E69F00">Transformers</li>
       </ul>
       <ul class="profiles">
-        <li><a href="mailto:fkhazaee@ucdavis.edu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 7 8.5-7"/></svg>fkhazaee@ucdavis.edu</a></li>
+        <li class="mail-wrap"><a href="mailto:fkhazaee@ucdavis.edu" id="mail-btn" aria-expanded="false" aria-controls="mail-pop"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 7 8.5-7"/></svg>Email</a>
+          <span class="mail-pop" id="mail-pop" hidden>
+            <span class="mail-addr">fkhazaee@ucdavis.edu</span>
+            <button type="button" id="mail-copy">Copy</button>
+            <a href="mailto:fkhazaee@ucdavis.edu">Open in mail app</a>
+          </span>
+        </li>
         <li><a href="https://linkedin.com/in/faezeh-khazaee" rel="me"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2M3 12h18"/></svg>LinkedIn</a></li>
         <li><a href="https://github.com/faezehkhazaee97" rel="me"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>GitHub</a></li>
         <li><a href="/assets/files/Faezeh_Khazaee_CV_ComputationalBiology.pdf"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/></svg>CV</a></li>
@@ -1446,6 +1469,25 @@ body::before {
     }, { threshold: 0.35 });
     reveal.forEach(function (f) { io.observe(f); });
   } else { reveal.forEach(function (f) { f.classList.add("seen"); }); }
+
+  // Email: show the address instead of jumping to a mail app
+  (function () {
+    var btn = document.getElementById("mail-btn"), pop = document.getElementById("mail-pop"), cp = document.getElementById("mail-copy");
+    if (!btn) return;
+    function close() { pop.hidden = true; btn.setAttribute("aria-expanded", "false"); }
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      var open = pop.hidden;
+      pop.hidden = !open;
+      btn.setAttribute("aria-expanded", String(open));
+    });
+    cp.addEventListener("click", function () {
+      var done = function () { cp.textContent = "Copied ✓"; setTimeout(function () { cp.textContent = "Copy"; }, 1600); };
+      if (navigator.clipboard) navigator.clipboard.writeText("fkhazaee@ucdavis.edu").then(done, function () {});
+    });
+    document.addEventListener("click", function (e) { if (!pop.hidden && !e.target.closest(".mail-wrap")) close(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+  })();
 
   // Rotating word in the intro
   (function () {
