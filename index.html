@@ -597,6 +597,18 @@ body::before {
 .car-btn:hover { border-color: var(--muted); }
 .car-count { font-variant-numeric: tabular-nums; }
 
+.photos { list-style: none; padding: 0; margin: 1.25rem 0 1.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+.photos li { margin: 0; }
+.photos a { display: block; border-radius: 10px; overflow: hidden; background: var(--plate); }
+.photos img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; transition: transform .5s cubic-bezier(.3,.7,.2,1); }
+.photos a:hover img { transform: scale(1.04); }
+.photos span { display: block; margin-top: 0.35rem; font-size: 0.875rem; color: var(--muted); }
+@media (max-width: 40rem) {
+  .photos { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 0.6rem; margin-inline: -0.25rem; padding-inline: 0.25rem; }
+  .photos::-webkit-scrollbar { display: none; }
+  .photos li { flex: 0 0 68%; scroll-snap-align: start; }
+}
+@media (prefers-reduced-motion: reduce) { .photos img { transition: none; } }
 .hobbies { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 0.75rem; }
 .hobbies li { border: 1px solid var(--rule); border-radius: 8px; padding: 0.75rem 0.9rem; }
 .hobbies .emoji { font-size: 1.4rem; line-height: 1; display: block; margin-bottom: 0.3rem; }
@@ -776,7 +788,7 @@ body::before {
         <span class="flip-in">
           <img class="portrait" src="/assets/photo.jpg" width="800" height="800" alt="Portrait of Faezeh (Baran) Khazaee" decoding="async">
           <span class="flip-back" aria-hidden="true">
-            <span>⚽ Plays sports</span>
+            <span>🎾 Tennis and ⛳ golf</span>
             <span>🍳 Loves to cook</span>
             <span>🧬 Reads DNA for fun</span>
             <span>☔ Baran = rain</span>
@@ -977,7 +989,12 @@ body::before {
   <section class="block" id="life" aria-labelledby="life-h" style="--c:var(--T);--c-ink:var(--T-ink)">
     <h2 id="life-h">Beyond research</h2>
     <div class="text">
-      <p>When I’m not training models, I’m usually playing sports or cooking. Sports keep me moving after long days at the keyboard, and cooking is my favorite kind of experiment: change one ingredient, taste, and try again.</p>
+      <p>When I’m not training models, you’ll find me on a tennis court, at the driving range, on a trail, or in the kitchen. Cooking is my favorite kind of experiment: change one ingredient, taste, and try again.</p>
+      <ul class="photos" aria-label="Photos">
+        <li><a href="/assets/life/tennis.webp" target="_blank" rel="noopener"><img src="/assets/life/tennis.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Tennis courts under an orange sunset sky, with the court lights on"></a><span>🎾 Tennis at sunset</span></li>
+        <li><a href="/assets/life/golf.webp" target="_blank" rel="noopener"><img src="/assets/life/golf.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Baran mid-swing at a golf driving range on a sunny day"></a><span>⛳ At the driving range</span></li>
+        <li><a href="/assets/life/hike.webp" target="_blank" rel="noopener"><img src="/assets/life/hike.webp" width="800" height="1000" loading="lazy" decoding="async" alt="Baran walking along a mountain road through pine forest under a blue sky"></a><span>🥾 Out on a trail</span></li>
+      </ul>
       <div class="games">
         <div class="tabs" role="tablist" aria-label="Games">
           <button type="button" role="tab" aria-selected="true" data-game="game-quiz">Lab or kitchen?</button>
@@ -1000,11 +1017,6 @@ body::before {
           <p class="quiz-f">Every letter becomes 8 bits, and every 2 bits become one base (00&nbsp;=&nbsp;A, 01&nbsp;=&nbsp;C, 10&nbsp;=&nbsp;G, 11&nbsp;=&nbsp;T), the same basic idea behind storing data in DNA.</p>
         </div>
       </div>
-      <ul class="hobbies" aria-label="Hobbies">
-        <li style="--c:var(--A)"><span class="emoji" aria-hidden="true">⚽</span><b>Sports</b><span class="note">My favorite way to reset after a long day of coding.</span></li>
-        <li style="--c:var(--G)"><span class="emoji" aria-hidden="true">🍳</span><b>Cooking</b><span class="note">Experiments I get to eat.</span></li>
-        <li style="--c:var(--P)"><span class="emoji" aria-hidden="true">🧪</span><b>New recipes</b><span class="note">Change one ingredient, taste, repeat.</span></li>
-      </ul>
     </div>
   </section>
 
