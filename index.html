@@ -368,132 +368,79 @@ cite { font-style: italic; }
   font-size: 0.9375rem;
 }
 
-/* ---------- Color and play ---------- */
-.hero { position: relative; isolation: isolate; }
-.hero::before {
+/* ---------- Accents (kept restrained) ---------- */
+body::before {
   content: "";
-  position: absolute;
-  inset: -2rem -30vw 0 -30vw;
-  z-index: -1;
-  background:
-    radial-gradient(28rem 20rem at 8% 18%, color-mix(in srgb, var(--A) 16%, transparent), transparent 70%),
-    radial-gradient(26rem 18rem at 92% 12%, color-mix(in srgb, var(--C) 14%, transparent), transparent 70%),
-    radial-gradient(24rem 18rem at 60% 95%, color-mix(in srgb, var(--G) 14%, transparent), transparent 70%),
-    radial-gradient(20rem 16rem at 30% 90%, color-mix(in srgb, var(--P) 12%, transparent), transparent 70%);
-  pointer-events: none;
-}
-.hero h1 span {
-  background: linear-gradient(100deg, var(--A-ink), var(--C-ink) 35%, var(--P-ink) 70%, var(--T-ink));
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shimmer 12s ease-in-out infinite alternate;
-}
-.hero h1 span + span { animation-delay: -6s; }
-@keyframes shimmer { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
-@media (prefers-reduced-motion: reduce) { .hero h1 span { animation: none; } }
-.wave {
-  display: inline-block;
-  transform-origin: 70% 80%;
-  animation: wave 2.4s ease-in-out 1s 2;
-}
-@keyframes wave { 0%,60%,100% { transform: rotate(0); } 10%,30% { transform: rotate(14deg); } 20%,40% { transform: rotate(-8deg); } }
-@media (prefers-reduced-motion: reduce) { .wave { animation: none; } }
-
-.tags li { background: color-mix(in srgb, var(--dot) 12%, var(--paper)); border-color: color-mix(in srgb, var(--dot) 35%, var(--paper)); color: var(--ink); transition: transform .2s; }
-.tags li:hover { transform: translateY(-2px) rotate(-2deg); }
-
-/* Section rules look like a strip of colored bases */
-.block { border-top: 0; position: relative; }
-.block::before, .site-footer p::before {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; top: 0;
-  height: 4px;
-  border-radius: 2px;
-  opacity: 0.85;
-  background: linear-gradient(90deg,
-    var(--A) 0 7%, var(--C) 7% 11%, var(--G) 11% 19%, var(--T) 19% 22%, var(--A) 22% 26%, var(--G) 26% 33%,
-    var(--C) 33% 41%, var(--T) 41% 46%, var(--A) 46% 52%, var(--G) 52% 55%, var(--C) 55% 63%, var(--T) 63% 70%,
-    var(--A) 70% 74%, var(--C) 74% 80%, var(--G) 80% 88%, var(--T) 88% 92%, var(--A) 92% 100%);
-  background-size: 100% 100%;
-}
-.site-footer p { border-top: 0; position: relative; }
-
-/* Section labels get a colored base chip */
-.block > h2, .block > .side > h2 { display: flex; align-items: center; gap: 0.55rem; align-self: start; }
-.block > h2::before, .block > .side > h2::before {
-  content: attr(data-base);
-  flex: none;
-  display: inline-grid;
-  place-items: center;
-  width: 1.5rem; height: 1.5rem;
-  border-radius: 0.4rem;
-  font: 700 0.8rem/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  color: #fff;
-  background: var(--c, var(--A));
-  transform: rotate(-6deg);
-}
-.block > h2 { color: var(--ink); }
-
-/* Research projects become colored cards */
-.project {
-  margin: 1.5rem 0 0;
-  padding: 1rem 1.25rem 1.1rem;
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--c) 7%, var(--paper));
-  border: 1px solid color-mix(in srgb, var(--c) 22%, var(--paper));
-  border-left: 5px solid var(--c);
-  transition: transform .2s, box-shadow .2s;
-}
-.project:hover { transform: translateY(-2px); box-shadow: 0 6px 18px -10px color-mix(in srgb, var(--c) 70%, transparent); }
-.project h3 { margin: 0 0 0.4rem !important; }
-.project p:last-child { margin-bottom: 0; }
-.project .kicker {
   display: block;
-  width: fit-content;
-  color: #fff;
-  background: var(--c);
-  border-radius: 999px;
-  padding: 0.1rem 0.6rem;
-  margin-bottom: 0.4rem;
-  letter-spacing: 0.05em;
+  height: 4px;
+  background: linear-gradient(90deg,
+    var(--A) 0 18%, var(--C) 18% 41%, var(--G) 41% 63%, var(--T) 63% 80%, var(--A) 80% 100%);
 }
-@media (prefers-color-scheme: dark) { .project .kicker, .block > h2::before, .block > .side > h2::before { color: #0e1418; } }
+.hero h1 .nick { color: var(--muted); }
+.tags li { color: var(--muted); }
 
-/* Portrait with a gradient ring */
-.portrait {
-  border: 0;
-  padding: 4px;
-  background: linear-gradient(135deg, var(--A), var(--C), var(--P), var(--G));
-  border-radius: 50%;
-  transition: transform .4s;
+.block > h2, .block > .side > h2 { align-self: start; }
+
+/* Research spans the full width so cards sit three across */
+@media (min-width: 52rem) { .block.wide { grid-template-columns: var(--label) minmax(0, 1fr); } }
+.block.wide .text > p, .block.wide .carousel { max-width: var(--measure); }
+@media (min-width: 62rem) { .projects { grid-template-columns: repeat(3, 1fr) !important; } }
+
+/* Research projects: compact grid of cards */
+.projects { display: grid; gap: 0.875rem; margin-top: 1.5rem; }
+@media (min-width: 40rem) { .projects { grid-template-columns: 1fr 1fr; } }
+.project {
+  padding: 0.9rem 1rem 1rem;
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--c);
+  border-radius: 8px;
+  background: var(--paper);
 }
-.portrait:hover { transform: rotate(4deg) scale(1.03); }
+.project h3 { font-size: 1.0625rem !important; margin: 0 0 0.35rem !important; line-height: 1.3; }
+.project p { font-size: 0.9375rem; line-height: 1.5; margin: 0 0 0.5rem; }
+.project p:last-child { margin-bottom: 0; }
+.project .kicker { color: var(--c-ink); margin-bottom: 0.2rem; font-size: 0.75rem; }
+.project .ref { font-size: 0.875rem; }
 
-/* Dated entries: colored year, hover highlight */
-.entries > li { border-radius: 8px; transition: background .2s; }
-.entries:not(.skills) > li:hover { background: color-mix(in srgb, var(--c, var(--C)) 7%, transparent); }
-.entries .when { color: var(--c-ink, var(--muted)); font-weight: 500; }
-.entries.skills .when { color: var(--c-ink, var(--ink)); }
-
-/* Hobby cards */
-.hobbies { list-style: none; padding: 0; margin: 1.25rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 0.75rem; }
-.hobbies li {
-  border-radius: 12px;
-  padding: 0.9rem 1rem;
-  background: color-mix(in srgb, var(--c) 10%, var(--paper));
-  border: 1px solid color-mix(in srgb, var(--c) 30%, var(--paper));
-  transition: transform .25s;
+/* Slideshow of research figures */
+.carousel { margin-top: 1.75rem; }
+.tabs { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-bottom: 0.75rem; }
+.tabs button {
+  font: inherit; font-size: 0.875rem;
+  color: var(--muted); background: none;
+  border: 1px solid var(--rule); border-radius: 999px;
+  padding: 0.2rem 0.75rem; cursor: pointer;
 }
-.hobbies li:hover { transform: translateY(-3px) rotate(-1.5deg); }
-.hobbies .emoji { font-size: 1.75rem; line-height: 1; display: block; margin-bottom: 0.35rem; }
+.tabs button:hover { color: var(--ink); }
+.tabs button[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--plate);
+}
+.track::-webkit-scrollbar { display: none; }
+@media (prefers-reduced-motion: reduce) { .track { scroll-behavior: auto; } }
+.slide { flex: 0 0 100%; scroll-snap-align: start; padding: 1rem 1.1rem 1.1rem; --c: var(--rule); }
+.slide .mini { margin: 0; }
+.car-nav { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.6rem; font-size: 0.875rem; color: var(--muted); }
+.car-btn {
+  font: inherit; font-size: 1.1rem; line-height: 1;
+  width: 2rem; height: 2rem; border-radius: 50%;
+  border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer;
+}
+.car-btn:hover { border-color: var(--muted); }
+.car-count { font-variant-numeric: tabular-nums; }
+
+.hobbies { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 0.75rem; }
+.hobbies li { border: 1px solid var(--rule); border-radius: 8px; padding: 0.75rem 0.9rem; }
+.hobbies .emoji { font-size: 1.4rem; line-height: 1; display: block; margin-bottom: 0.3rem; }
 .hobbies b { display: block; font-weight: 600; }
-.hobbies span.note { color: var(--muted); font-size: 0.9375rem; line-height: 1.4; }
-
-.site-nav a { border-radius: 999px; padding: 0.15rem 0.5rem; margin: 0 -0.5rem; transition: background .2s, color .2s; }
-.site-nav a:hover { text-decoration: none; color: var(--ink); background: color-mix(in srgb, var(--A) 14%, transparent); }
+.hobbies span.note { color: var(--muted); font-size: 0.9rem; line-height: 1.4; }
 
 /* Small figures inside research cards */
 .mini { margin: 1rem 0 0.75rem; }
@@ -529,7 +476,7 @@ cite { font-style: italic; }
 }
 
 @media print {
-  .hero::before, .block::before { display: none; }
+  body::before, .carousel { display: none; }
   .site-nav, .controls, .skip { display: none; }
   .block { break-inside: avoid; }
   a { color: inherit; }
@@ -628,7 +575,7 @@ cite { font-style: italic; }
   <section class="hero" aria-labelledby="name">
     <div>
       <h1 id="name"><span>Faezeh <small class="nick">(Baran)</small></span> <span>Khazaee</span></h1>
-      <p class="role"><span class="wave" aria-hidden="true">👋</span> Hi! I’m a graduate researcher in the Quon Lab at UC Davis.</p>
+      <p class="role">Graduate researcher in the Quon Lab, UC Davis.</p>
       <p class="lede">I build transformers and other deep learning models that learn from biology: single cells, promoter DNA, and the regulatory signals that decide which genes turn on, with models whose predictions can be traced back to the cells and sequences behind them.</p>
       <ul class="tags" aria-label="Interests">
         <li style="--dot:#009E73">Biology</li>
@@ -660,7 +607,7 @@ cite { font-style: italic; }
 
   <section class="block" id="about" aria-labelledby="about-h" style="--c:var(--A);--c-ink:var(--A-ink)">
     <div class="side">
-      <h2 id="about-h" data-base="A" style="--c:var(--A)">About</h2>
+      <h2 id="about-h">About</h2>
       <img class="portrait" src="/assets/photo.jpg" width="800" height="800" alt="Portrait of Faezeh (Baran) Khazaee" decoding="async">
     </div>
     <div class="text">
@@ -671,7 +618,7 @@ cite { font-style: italic; }
   </section>
 
   <section class="block" id="news" aria-labelledby="news-h" style="--c:var(--C);--c-ink:var(--C-ink)">
-    <h2 id="news-h" data-base="C" style="--c:var(--C)">News</h2>
+    <h2 id="news-h">News</h2>
     <div class="text">
       <ol class="entries">
         <li>
@@ -694,15 +641,16 @@ cite { font-style: italic; }
     </div>
   </section>
 
-  <section class="block" id="research" aria-labelledby="research-h" style="--c:var(--G);--c-ink:var(--G-ink)">
-    <h2 id="research-h" data-base="G" style="--c:var(--G)">Research</h2>
+  <section class="block wide" id="research" aria-labelledby="research-h">
+    <h2 id="research-h">Research</h2>
     <div class="text">
-      <p>My projects share one question: what can a deep model learn about biology from raw data, and can we see how it learned it? Most pair a transformer or set-based architecture with a biological prediction task.</p>
+      <p>My projects share one question: what can a deep model learn about biology from raw data, and can we see how it learned it?</p>
 
-      <article class="project" style="--c:var(--A)">
-        <h3><span class="kicker">Single cells</span>Predicting phenotype from single-cell data</h3>
-        <p>A patient sample holds thousands of cells, but the label (healthy or diseased, responder or not) belongs to the whole sample. CELLECTION treats each sample as a bag of cells and uses interpretable multiple-instance learning to predict the phenotype while pointing to the cells that drive it. I led the benchmarking, validation, figure design, and manuscript preparation, including comparisons against eight baseline methods across five sample-level prediction tasks.</p>
-        <figure class="mini" id="fig-mil">
+      <div class="carousel" aria-roledescription="carousel" aria-label="Research figures">
+        <div class="tabs" role="tablist" aria-label="Choose a figure"><button type="button" role="tab" aria-selected="true" aria-controls="slide-0" data-slide="0">CELLECTION</button><button type="button" role="tab" aria-selected="false" aria-controls="slide-1" data-slide="1">P2G</button><button type="button" role="tab" aria-selected="false" aria-controls="slide-2" data-slide="2">GenomeRL</button><button type="button" role="tab" aria-selected="false" aria-controls="slide-3" data-slide="3">AvalancheBreak</button></div>
+        <div class="track" id="car-track">
+          <div class="slide" id="slide-0" role="tabpanel" aria-label="CELLECTION">
+            <figure class="mini" id="fig-mil">
           <div class="box"><svg viewBox="0 0 380 180" role="img" aria-labelledby="fig-mil-cap"><g id="mil-cells"></g>
             <circle cx="92" cy="88" r="78" fill="none" style="stroke:var(--rule)" stroke-width="2" stroke-dasharray="4 5"/>
             <text class="lbl" x="92" y="178" text-anchor="middle">one donor = a bag of cells</text>
@@ -723,13 +671,9 @@ cite { font-style: italic; }
           </div>
           <figcaption id="fig-mil-cap"><b>Fig. 2.</b> Only the donor has a label, not each cell. Multiple-instance learning weighs every cell and rings the few that drive the prediction. Here the disease donor carries a small population of blue cells in a shifted state. Schematic.</figcaption>
         </figure>
-        <p class="ref">Quon Lab, UC Davis. <a href="https://github.com/faezehkhazaee97/cellection-evaluation">Benchmark code</a></p>
-      </article>
-
-      <article class="project" style="--c:var(--C)">
-        <h3><span class="kicker">Gene regulation</span>Reading promoters with transformers</h3>
-        <p>ProMod is a self-supervised transformer trained on promoter DNA from more than 100 vertebrate species to predict gene expression. Promoters2Gene (P2G) goes further, combining DNA sequence with chromatin accessibility (ATAC-seq) and histone-modification (ChIP-seq) signals to predict gene expression in specific cell types.</p>
-        <figure class="mini" id="fig-p2g">
+          </div>
+          <div class="slide" id="slide-1" role="tabpanel" aria-label="P2G">
+            <figure class="mini" id="fig-p2g">
           <div class="box"><svg viewBox="0 0 380 170" role="img" aria-labelledby="fig-p2g-cap">
             <text class="lbl" x="0" y="26">DNA</text><g id="p2g-dna"></g>
             <text class="lbl" x="0" y="66">ATAC</text>
@@ -749,13 +693,9 @@ cite { font-style: italic; }
           </svg></div>
           <figcaption id="fig-p2g-cap"><b>Fig. 3.</b> P2G reads the DNA sequence together with where chromatin is open (ATAC-seq) and how it is marked (ChIP-seq), and predicts how strongly the gene is expressed in each cell type. Schematic.</figcaption>
         </figure>
-        <p class="ref">Quon Lab, UC Davis. Manuscripts in preparation</p>
-      </article>
-
-      <article class="project" style="--c:var(--P)">
-        <h3><span class="kicker">Tokenization</span>Learning where DNA tokens begin and end</h3>
-        <p>Language models split text into tokens, but DNA has no spaces. GenomeRL is an adaptive DNA tokenization framework in which a reinforcement-learning agent learns token boundaries for promoter detection.</p>
-        <figure class="mini" id="fig-tok">
+          </div>
+          <div class="slide" id="slide-2" role="tabpanel" aria-label="GenomeRL">
+            <figure class="mini" id="fig-tok">
           <div class="box"><svg viewBox="0 0 380 92" role="img" aria-labelledby="fig-tok-cap"><g id="tok-g"></g>
             <text class="lbl" id="tok-n" x="190" y="86" text-anchor="middle"></text>
           </svg></div>
@@ -767,25 +707,9 @@ cite { font-style: italic; }
           </div>
           <figcaption id="fig-tok-cap"><b>Fig. 4.</b> The same DNA cut two ways. Fixed 3-mers slice straight through the TATA box; learned boundaries can keep a motif in one token. Schematic.</figcaption>
         </figure>
-        <p class="ref"><a href="https://github.com/faezehkhazaee97/GenomeRL">Code</a></p>
-      </article>
-
-      <article class="project" style="--c:var(--T)">
-        <h3><span class="kicker">Disease genetics</span>Rare variants and brain disorders</h3>
-        <p>Varformer is a set-based transformer that predicts rare-variant disease risk from regulatory and gene-context features, with a focus on somatic mosaicism in brain disorders.</p>
-        <p class="ref">Quon Lab, UC Davis. Manuscript in preparation</p>
-      </article>
-
-      <article class="project" style="--c:var(--G)">
-        <h3><span class="kicker">Genome editing</span>What makes CRISPR epigenome editing work</h3>
-        <p>EpiCRISPR studies the structural and guide-activity features that determine the outcome of CRISPR epigenome editing, using large-scale guide RNA libraries.</p>
-        <p class="ref">Quon Lab, UC Davis. Manuscript in preparation</p>
-      </article>
-
-      <article class="project" style="--c:var(--C)">
-        <h3><span class="kicker">Inside transformers</span>Boundary tokens as scaffolding</h3>
-        <p>Large language models lose accuracy abruptly on long, deterministic sequence tasks. AvalancheBreak asks whether periodic boundary or separator tokens delay that drop, and analyzes the behavior with a Sherrington–Kirkpatrick spin-glass lens on Qwen2.5-7B and 14B and Mistral-7B. The answer so far: boundaries act as scaffolding, not as added capability.</p>
-        <figure class="mini" id="fig-aval">
+          </div>
+          <div class="slide" id="slide-3" role="tabpanel" aria-label="AvalancheBreak">
+            <figure class="mini" id="fig-aval">
           <div class="box"><svg viewBox="0 0 380 170" role="img" aria-labelledby="fig-aval-cap">
             <line x1="40" y1="20" x2="40" y2="140" style="stroke:var(--rule)"/><line x1="40" y1="140" x2="370" y2="140" style="stroke:var(--rule)"/>
             <text class="lbl" x="34" y="26" text-anchor="end">high</text><text class="lbl" x="34" y="140" text-anchor="end">low</text>
@@ -800,17 +724,59 @@ cite { font-style: italic; }
           </svg></div>
           <figcaption id="fig-aval-cap"><b>Fig. 5.</b> The question behind AvalancheBreak. On long deterministic tasks, accuracy collapses suddenly. Do periodic separator tokens (dotted lines) push the collapse later? A sketch of the idea, not measured results.</figcaption>
         </figure>
-        <p class="ref"><a href="https://github.com/faezehkhazaee97/AvalancheBreak">Code</a></p>
-      </article>
+          </div>
+        </div>
+        <div class="car-nav">
+          <button type="button" class="car-btn" id="car-prev" aria-label="Previous figure">&#8249;</button>
+          <button type="button" class="car-btn" id="car-next" aria-label="Next figure">&#8250;</button>
+          <span class="car-count" id="car-count">1 / 4</span>
+        </div>
+      </div>
 
-      <article class="project" style="--c:var(--A)">
-        <h3><span class="kicker">Earlier work</span>Vision and multimodal reasoning</h3>
-        <p>At the Robotics and Machine Intelligence Lab at the University of Tehran, I built a transformer-based multi-hop co-attention network for visual question answering that improved multimodal reasoning by 10%, and developed human-like non-player agents for a serious game, with vision-based perception and decision constraints learned from the behavior of 50 participants.</p>
-      </article>
-    </div></section>
+      <div class="projects">
+        <article class="project" style="--c:var(--A);--c-ink:var(--A-ink)">
+          <span class="kicker">Single cells</span>
+          <h3>CELLECTION</h3>
+          <p>Interpretable multiple-instance learning that predicts a donor’s phenotype from thousands of single cells and points to the cells behind it. I led benchmarking against eight baselines on five tasks, validation, figures, and the manuscript.</p>
+          <p class="ref"><a href="https://github.com/faezehkhazaee97/cellection-evaluation">Benchmark code</a></p>
+        </article>
+        <article class="project" style="--c:var(--C);--c-ink:var(--C-ink)">
+          <span class="kicker">Gene regulation</span>
+          <h3>ProMod and P2G</h3>
+          <p>ProMod is a self-supervised transformer trained on promoter DNA from more than 100 vertebrates. P2G adds chromatin accessibility (ATAC-seq) and histone marks (ChIP-seq) to predict expression in each cell type.</p>
+          <p class="ref">Manuscripts in preparation</p>
+        </article>
+        <article class="project" style="--c:var(--P);--c-ink:var(--P-ink)">
+          <span class="kicker">Tokenization</span>
+          <h3>GenomeRL</h3>
+          <p>DNA has no spaces. A reinforcement-learning agent learns where DNA tokens should begin and end, for promoter detection.</p>
+          <p class="ref"><a href="https://github.com/faezehkhazaee97/GenomeRL">Code</a></p>
+        </article>
+        <article class="project" style="--c:var(--T);--c-ink:var(--T-ink)">
+          <span class="kicker">Inside transformers</span>
+          <h3>AvalancheBreak</h3>
+          <p>Do periodic separator tokens delay the sudden accuracy collapse of LLMs on long deterministic tasks? A spin-glass analysis on Qwen2.5 and Mistral suggests boundaries act as scaffolding, not new capability.</p>
+          <p class="ref"><a href="https://github.com/faezehkhazaee97/AvalancheBreak">Code</a></p>
+        </article>
+        <article class="project" style="--c:var(--G);--c-ink:var(--G-ink)">
+          <span class="kicker">Disease genetics</span>
+          <h3>Varformer</h3>
+          <p>A set-based transformer for rare-variant disease risk from regulatory and gene-context features, focused on somatic mosaicism in brain disorders.</p>
+          <p class="ref">Manuscript in preparation</p>
+        </article>
+        <article class="project" style="--c:var(--A);--c-ink:var(--A-ink)">
+          <span class="kicker">Genome editing</span>
+          <h3>EpiCRISPR</h3>
+          <p>Which structural and guide-level features decide the outcome of CRISPR epigenome editing, learned from large guide RNA libraries.</p>
+          <p class="ref">Manuscript in preparation</p>
+        </article>
+      </div>
+      <p class="ref" style="margin-top:1.25rem">Earlier, at the University of Tehran’s Robotics and Machine Intelligence Lab, I built a multi-hop co-attention transformer for visual question answering (10% better multimodal reasoning) and human-like game agents learned from 50 players.</p>
+    </div>
+  </section>
 
   <section class="block" id="publications" aria-labelledby="publications-h" style="--c:var(--T);--c-ink:var(--T-ink)">
-    <h2 id="publications-h" data-base="T" style="--c:var(--T)">Publications</h2>
+    <h2 id="publications-h">Publications</h2>
     <div class="text">
       <h3>Preprints</h3>
       <ol class="entries">
@@ -870,7 +836,7 @@ cite { font-style: italic; }
   </section>
 
   <section class="block" id="skills" aria-labelledby="skills-h" style="--c:var(--P);--c-ink:var(--P-ink)">
-    <h2 id="skills-h" data-base="A" style="--c:var(--P)">Skills</h2>
+    <h2 id="skills-h">Skills</h2>
     <div class="text">
       <ul class="entries skills">
         <li>
@@ -898,7 +864,7 @@ cite { font-style: italic; }
   </section>
 
   <section class="block" id="teaching" aria-labelledby="teaching-h" style="--c:var(--C);--c-ink:var(--C-ink)">
-    <h2 id="teaching-h" data-base="C" style="--c:var(--C)">Teaching</h2>
+    <h2 id="teaching-h">Teaching</h2>
     <div class="text">
       <ol class="entries">
         <li>
@@ -920,7 +886,7 @@ cite { font-style: italic; }
   </section>
 
   <section class="block" id="background" aria-labelledby="background-h" style="--c:var(--G);--c-ink:var(--G-ink)">
-    <h2 id="background-h" data-base="G" style="--c:var(--G)">Background</h2>
+    <h2 id="background-h">Background</h2>
     <div class="text">
       <h3>Education</h3>
       <ol class="entries">
@@ -991,7 +957,7 @@ cite { font-style: italic; }
   </section>
 
   <section class="block" id="life" aria-labelledby="life-h" style="--c:var(--T);--c-ink:var(--T-ink)">
-    <h2 id="life-h" data-base="T" style="--c:var(--T)">Beyond research</h2>
+    <h2 id="life-h">Beyond research</h2>
     <div class="text">
       <p>When I’m not training models, I’m usually playing sports or cooking. Sports keep me moving after long days at the keyboard, and cooking is my favorite kind of experiment: change one ingredient, taste, and try again.</p>
       <ul class="hobbies" aria-label="Hobbies">
@@ -1003,7 +969,7 @@ cite { font-style: italic; }
   </section>
 
   <section class="block" id="contact" aria-labelledby="contact-h" style="--c:var(--A);--c-ink:var(--A-ink)">
-    <h2 id="contact-h" data-base="A" style="--c:var(--A)">Contact</h2>
+    <h2 id="contact-h">Contact</h2>
     <div class="text">
       <p>Email is the best way to reach me. I’m always happy to talk about machine learning, biology, or transformers.</p>
       <ul class="entries skills">
@@ -1355,6 +1321,38 @@ cite { font-style: italic; }
     }, { threshold: 0.35 });
     reveal.forEach(function (f) { io.observe(f); });
   } else { reveal.forEach(function (f) { f.classList.add("seen"); }); }
+
+  // Slideshow
+  (function () {
+    var track = document.getElementById("car-track");
+    if (!track) return;
+    var slides = track.querySelectorAll(".slide"), tabs = document.querySelectorAll("[data-slide]");
+    var count = document.getElementById("car-count"), cur = 0;
+    function go(i) {
+      i = (i + slides.length) % slides.length;
+      track.scrollTo({ left: i * track.clientWidth });
+      mark(i);
+    }
+    function mark(i) {
+      cur = i;
+      tabs.forEach(function (t, k) { t.setAttribute("aria-selected", String(k === i)); });
+      count.textContent = (i + 1) + " / " + slides.length;
+      slides[i].querySelector(".mini").classList.add("seen");
+    }
+    var tmo;
+    track.addEventListener("scroll", function () {
+      clearTimeout(tmo);
+      tmo = setTimeout(function () { var i = Math.round(track.scrollLeft / track.clientWidth); if (i !== cur) mark(i); }, 80);
+    });
+    tabs.forEach(function (t) { t.addEventListener("click", function () { go(+this.getAttribute("data-slide")); }); });
+    document.getElementById("car-prev").addEventListener("click", function () { go(cur - 1); });
+    document.getElementById("car-next").addEventListener("click", function () { go(cur + 1); });
+    track.setAttribute("tabindex", "0");
+    track.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { go(cur + 1); e.preventDefault(); }
+      else if (e.key === "ArrowLeft") { go(cur - 1); e.preventDefault(); }
+    });
+  })();
 
   // Fig. 2: bag of cells with attention
   (function () {
