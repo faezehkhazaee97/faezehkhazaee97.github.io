@@ -402,6 +402,77 @@ body::before {
 .project .kicker { color: var(--c-ink); margin-bottom: 0.2rem; font-size: 0.75rem; }
 .project .ref { font-size: 0.875rem; }
 
+/* ---------- Playful touches ---------- */
+.rot {
+  display: inline-block;
+  color: var(--link);
+  font-style: italic;
+  transition: opacity .35s, transform .35s;
+}
+.rot.out { opacity: 0; transform: translateY(0.3em); }
+.nick { position: relative; cursor: help; }
+.nick::after {
+  content: attr(data-tip);
+  position: absolute; left: 50%; bottom: 105%;
+  transform: translate(-50%, 4px);
+  white-space: nowrap;
+  font-size: 0.95rem; letter-spacing: 0; line-height: 1.3;
+  color: var(--paper); background: var(--ink);
+  padding: 0.3rem 0.6rem; border-radius: 6px;
+  opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s;
+}
+.nick:hover::after, .nick:focus::after { opacity: 1; transform: translate(-50%, 0); }
+
+.flip { display: block; padding: 0; border: 0; background: none; cursor: pointer; perspective: 800px; width: 8rem; margin: 0 0 0.3rem; font: inherit; color: inherit; text-align: left; }
+@media (min-width: 52rem) { .flip { width: 100%; max-width: var(--label); margin-top: 1rem; } }
+.flip .portrait { width: 100%; max-width: none; margin: 0; }
+.flip-in { position: relative; display: block; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.3,.7,.2,1); }
+.flip[aria-pressed="true"] .flip-in { transform: rotateY(180deg); }
+.flip .portrait, .flip-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.flip-back {
+  position: absolute; inset: 0;
+  transform: rotateY(180deg);
+  display: flex; flex-direction: column; justify-content: center; gap: 0.3rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 6px; border: 1px solid var(--rule);
+  background: var(--plate);
+  font-size: 0.8125rem; line-height: 1.25;
+}
+.flip-hint { display: block; color: var(--muted); font-size: 0.75rem; margin-bottom: 1rem; }
+@media (prefers-reduced-motion: reduce) { .flip-in { transition: none; } }
+
+.quiz { margin: 1.25rem 0 0; padding: 0.9rem 1rem; border: 1px solid var(--rule); border-radius: 8px; background: var(--plate); }
+.quiz p { margin: 0; }
+.quiz-h { display: flex; justify-content: space-between; align-items: baseline; }
+.quiz-score { color: var(--muted); font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+.quiz-q { font-size: 1.25rem; margin: 0.35rem 0 0.6rem !important; }
+.quiz-a { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.quiz-a button {
+  font: inherit; font-size: 0.9375rem; cursor: pointer;
+  border: 1px solid var(--rule); background: var(--paper); color: var(--ink);
+  border-radius: 999px; padding: 0.25rem 0.9rem;
+  transition: transform .15s, background .2s, border-color .2s;
+}
+.quiz-a button:hover { transform: translateY(-1px); border-color: var(--muted); }
+.quiz-a button.right { background: color-mix(in srgb, var(--A) 20%, var(--paper)); border-color: var(--A); }
+.quiz-a button.wrong { background: color-mix(in srgb, var(--T) 15%, var(--paper)); border-color: var(--T); }
+.quiz-f { color: var(--muted); font-size: 0.9375rem; min-height: 1.5em; margin-top: 0.6rem !important; }
+.quiz-f button { font: inherit; color: var(--link); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 0.2em; }
+
+.toast {
+  position: fixed; left: 50%; bottom: 1.5rem; z-index: 20;
+  transform: translate(-50%, 150%);
+  background: var(--ink); color: var(--paper);
+  padding: 0.6rem 1rem; border-radius: 10px;
+  font-size: 0.9375rem; box-shadow: 0 8px 24px -12px rgba(0,0,0,.5);
+  opacity: 0; visibility: hidden;
+  transition: transform .4s cubic-bezier(.3,.7,.2,1), opacity .3s, visibility 0s .4s;
+  max-width: calc(100vw - 2rem);
+}
+.toast.show { transform: translate(-50%, 0); opacity: 1; visibility: visible; transition: transform .4s cubic-bezier(.3,.7,.2,1), opacity .3s; }
+.egg { color: var(--muted); }
+.egg kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.85em; border: 1px solid var(--rule); border-radius: 4px; padding: 0 0.3em; }
+
 /* Slideshow of research figures */
 .carousel { margin-top: 1.75rem; }
 .tabs { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-bottom: 0.75rem; }
@@ -574,9 +645,9 @@ body::before {
 
   <section class="hero" aria-labelledby="name">
     <div>
-      <h1 id="name"><span>Faezeh <small class="nick">(Baran)</small></span> <span>Khazaee</span></h1>
+      <h1 id="name"><span>Faezeh <small class="nick" tabindex="0" data-tip="Baran means “rain” in Persian ☔">(Baran)</small></span> <span>Khazaee</span></h1>
       <p class="role">Graduate researcher in the Quon Lab, UC Davis.</p>
-      <p class="lede">I build transformers and other deep learning models that learn from biology: single cells, promoter DNA, and the regulatory signals that decide which genes turn on, with models whose predictions can be traced back to the cells and sequences behind them.</p>
+      <p class="lede">I teach transformers to read <span class="rot" id="rot" aria-live="off">DNA</span>, and I build models whose predictions can be traced back to the cells and sequences behind them.</p>
       <ul class="tags" aria-label="Interests">
         <li style="--dot:#009E73">Biology</li>
         <li style="--dot:#0072B2">AI</li>
@@ -608,7 +679,18 @@ body::before {
   <section class="block" id="about" aria-labelledby="about-h" style="--c:var(--A);--c-ink:var(--A-ink)">
     <div class="side">
       <h2 id="about-h">About</h2>
-      <img class="portrait" src="/assets/photo.jpg" width="800" height="800" alt="Portrait of Faezeh (Baran) Khazaee" decoding="async">
+      <button type="button" class="flip" id="flip" aria-pressed="false" aria-label="Flip the photo to see fun facts">
+        <span class="flip-in">
+          <img class="portrait" src="/assets/photo.jpg" width="800" height="800" alt="Portrait of Faezeh (Baran) Khazaee" decoding="async">
+          <span class="flip-back" aria-hidden="true">
+            <span>⚽ Plays sports</span>
+            <span>🍳 Loves to cook</span>
+            <span>🧬 Reads DNA for fun</span>
+            <span>☔ Baran = rain</span>
+          </span>
+        </span>
+      </button>
+      <span class="flip-hint">Click the photo</span>
     </div>
     <div class="text">
       <p>Faezeh (Baran) Khazaee is an M.Sc. student in Computer Science at the University of California, Davis (expected December 2026), where she works in the Quon Lab on machine learning and computational biology.</p>
@@ -960,6 +1042,16 @@ body::before {
     <h2 id="life-h">Beyond research</h2>
     <div class="text">
       <p>When I’m not training models, I’m usually playing sports or cooking. Sports keep me moving after long days at the keyboard, and cooking is my favorite kind of experiment: change one ingredient, taste, and try again.</p>
+      <div class="quiz" id="quiz">
+        <p class="quiz-h"><b>Lab or kitchen?</b> <span id="quiz-score" class="quiz-score">0 / 0</span></p>
+        <p class="quiz-q" id="quiz-q"></p>
+        <div class="quiz-a" role="group" aria-label="Your answer">
+          <button type="button" data-a="Lab">🧪 Lab</button>
+          <button type="button" data-a="Kitchen">🍳 Kitchen</button>
+          <button type="button" data-a="Both">🤝 Both</button>
+        </div>
+        <p class="quiz-f" id="quiz-f" aria-live="polite"></p>
+      </div>
       <ul class="hobbies" aria-label="Hobbies">
         <li style="--c:var(--A)"><span class="emoji" aria-hidden="true">⚽</span><b>Sports</b><span class="note">My favorite way to reset after a long day of coding.</span></li>
         <li style="--c:var(--G)"><span class="emoji" aria-hidden="true">🍳</span><b>Cooking</b><span class="note">Experiments I get to eat.</span></li>
@@ -985,8 +1077,9 @@ body::before {
 </main>
 
 <footer class="wrap site-footer">
-  <p>© 2026 Faezeh (Baran) Khazaee. Updated November 2026.</p>
+  <p>© 2026 Faezeh (Baran) Khazaee. Updated November 2026. <span class="egg">Psst: type a start codon (<kbd>A</kbd><kbd>T</kbd><kbd>G</kbd>).</span></p>
 </footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function () {
@@ -1321,6 +1414,92 @@ body::before {
     }, { threshold: 0.35 });
     reveal.forEach(function (f) { io.observe(f); });
   } else { reveal.forEach(function (f) { f.classList.add("seen"); }); }
+
+  // Rotating word in the intro
+  (function () {
+    var el = document.getElementById("rot");
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var words = ["DNA", "single cells", "chromatin", "the regulatory code"], i = 0;
+    setInterval(function () {
+      el.classList.add("out");
+      setTimeout(function () { i = (i + 1) % words.length; el.textContent = words[i]; el.classList.remove("out"); }, 350);
+    }, 2600);
+  })();
+
+  // Flip the portrait
+  (function () {
+    var f = document.getElementById("flip");
+    if (!f) return;
+    f.addEventListener("click", function () {
+      var on = f.getAttribute("aria-pressed") !== "true";
+      f.setAttribute("aria-pressed", String(on));
+      f.querySelector(".flip-back").setAttribute("aria-hidden", String(!on));
+    });
+  })();
+
+  // Lab or kitchen?
+  (function () {
+    var q = document.getElementById("quiz-q");
+    if (!q) return;
+    var items = [
+      ["A whisk", "Kitchen", "Strictly a kitchen tool. Lab mixing is done by vortexers and stir bars."],
+      ["A pipette", "Lab", "The lab’s measuring spoon, accurate to a millionth of a liter."],
+      ["Agar", "Both", "It sets Petri dishes for growing bacteria, and it sets Japanese desserts."],
+      ["A salad spinner", "Both", "It lives in the kitchen, but it is really a hand-cranked centrifuge."],
+      ["A thermocycler", "Lab", "The machine behind PCR, cycling temperatures to copy DNA."],
+      ["Fermentation", "Both", "Bread, yogurt, and kimchi in the kitchen; bioreactors in the lab."],
+      ["A water bath", "Both", "Sous vide cooking and keeping samples at 37 °C use the same idea."]
+    ];
+    var at = 0, right = 0, done = 0, answered = false;
+    var btns = document.querySelectorAll("[data-a]"), fb = document.getElementById("quiz-f"), sc = document.getElementById("quiz-score");
+    function show() {
+      answered = false;
+      q.textContent = items[at][0] + "?";
+      fb.textContent = "";
+      btns.forEach(function (b) { b.classList.remove("right", "wrong"); b.disabled = false; });
+    }
+    btns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        if (answered) return;
+        answered = true; done++;
+        var ok = this.getAttribute("data-a") === items[at][1];
+        if (ok) right++;
+        btns.forEach(function (x) { if (x.getAttribute("data-a") === items[at][1]) x.classList.add("right"); x.disabled = true; });
+        if (!ok) this.classList.add("wrong");
+        sc.textContent = right + " / " + done;
+        fb.innerHTML = "";
+        fb.appendChild(document.createTextNode((ok ? "Yes! " : "It’s " + items[at][1].toLowerCase() + ". ") + items[at][2] + " "));
+        var nx = document.createElement("button");
+        nx.type = "button";
+        nx.textContent = at === items.length - 1 ? "Play again" : "Next";
+        nx.addEventListener("click", function () {
+          at = (at + 1) % items.length;
+          if (at === 0) { right = 0; done = 0; sc.textContent = "0 / 0"; }
+          show();
+        });
+        fb.appendChild(nx);
+      });
+    });
+    show();
+  })();
+
+  // Easter egg: type a start codon
+  (function () {
+    var buf = "", toast = document.getElementById("toast"), tmo;
+    document.addEventListener("keydown", function (e) {
+      var t = e.target;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+      if (e.key.length !== 1) return;
+      buf = (buf + e.key.toUpperCase()).slice(-3);
+      if (buf === "ATG") {
+        buf = "";
+        toast.textContent = "🧬 Start codon detected. Translation has begun: thanks for reading this far!";
+        toast.classList.add("show");
+        clearTimeout(tmo);
+        tmo = setTimeout(function () { toast.classList.remove("show"); }, 3800);
+      }
+    });
+  })();
 
   // Slideshow
   (function () {
