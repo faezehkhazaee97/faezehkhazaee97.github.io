@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faezeh (Baran) Khazaee | Machine Learning for Biology</title>
+<meta name="description" content="Faezeh (Baran) Khazaee is a computer science researcher at UC Davis (Quon Lab) who builds transformers and other deep learning models for single-cell and genomic data.">
+<meta name="author" content="Faezeh Khazaee">
+<meta name="keywords" content="machine learning, deep learning, transformers, computational biology, single-cell RNA-seq, genomics, self-supervised learning">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://faezehkhazaee97.github.io/">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1418" media="(prefers-color-scheme: dark)">
+
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Faezeh Khazaee">
+<meta property="og:title" content="Faezeh (Baran) Khazaee, machine learning for biology">
+<meta property="og:description" content="Transformers, self-supervised learning, and generative models for single-cell and genomic data. M.Sc. in Computer Science at UC Davis, Quon Lab.">
+<meta property="og:url" content="https://faezehkhazaee97.github.io/">
+<meta property="og:image" content="https://faezehkhazaee97.github.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Faezeh Khazaee beside a DNA double helix with transformer attention arcs">
+<meta property="og:locale" content="en_US">
+<meta property="profile:first_name" content="Faezeh">
+<meta property="profile:last_name" content="Khazaee">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Faezeh (Baran) Khazaee, machine learning for biology">
+<meta name="twitter:description" content="Transformers, self-supervised learning, and generative models for single-cell and genomic data.">
+<meta name="twitter:image" content="https://faezehkhazaee97.github.io/assets/og-image.png">
+
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/newsreader-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+@font-face {
+  font-family: "Newsreader";
+  src: url("/assets/fonts/newsreader-latin-opsz-normal.woff2") format("woff2-variations"),
+       url("/assets/fonts/newsreader-latin-opsz-normal.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Newsreader";
+  src: url("/assets/fonts/newsreader-latin-opsz-italic.woff2") format("woff2-variations"),
+       url("/assets/fonts/newsreader-latin-opsz-italic.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --paper: #ffffff;
+  --ink: #14201f;
+  --muted: #56645f;
+  --rule: #e1e8e6;
+  --plate: #f1f6f5;
+  --link: #00756f;
+  --link-hover: #004f4b;
+  --label: 9.5rem;
+  --measure: 38rem;
+  --gap: clamp(1.5rem, 3vw, 3rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0e1418;
+    --ink: #e5eeec;
+    --muted: #97a6a2;
+    --rule: #1f2b2e;
+    --plate: #141d21;
+    --link: #4fd1c1;
+    --link-hover: #93e6dc;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Newsreader", Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+@media (min-width: 48rem) { body { font-size: 1.125rem; } }
+
+a {
+  color: var(--link);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+a:hover { color: var(--link-hover); text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 2px; }
+
+cite { font-style: italic; }
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  background: var(--paper);
+  padding: 0.5rem 0.75rem;
+  z-index: 10;
+}
+.skip:focus { top: 1rem; }
+
+.wrap {
+  max-width: 70rem;
+  margin: 0 auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* Section navigation */
+.site-nav { padding-block: 1.25rem 0; }
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  font-size: 0.9375rem;
+}
+.site-nav a { color: var(--muted); text-decoration: none; }
+.site-nav a:hover { color: var(--ink); text-decoration: underline; }
+
+/* Hero: name and statement beside the live figure */
+.hero {
+  display: grid;
+  gap: 2.5rem;
+  padding-block: clamp(2.25rem, 7vw, 5.5rem) clamp(2.5rem, 6vw, 4.5rem);
+}
+@media (min-width: 62rem) {
+  .hero {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;
+    column-gap: 4.5rem;
+  }
+}
+.hero h1 {
+  font-size: clamp(2.875rem, 1.75rem + 4.6vw, 5.5rem);
+  line-height: 0.95;
+  font-weight: 430;
+  letter-spacing: -0.024em;
+  margin: 0 0 1.25rem;
+}
+.hero h1 span { display: block; }
+.hero .role { color: var(--muted); margin: 0 0 1.75rem; }
+.hero .lede {
+  font-size: clamp(1.25rem, 1.08rem + 0.55vw, 1.4375rem);
+  line-height: 1.45;
+  max-width: 31rem;
+  margin: 0 0 1.75rem;
+}
+.tags {
+  list-style: none;
+  margin: 0 0 1.75rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+.tags li {
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.15rem 0.75rem;
+  color: var(--muted);
+}
+.tags li::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  margin-right: 0.45rem;
+  vertical-align: 0.05em;
+  background: var(--dot);
+}
+.profiles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem 1.5rem;
+}
+
+/* Fig. 1 */
+.fig { margin: 0; }
+.plate {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--plate);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.plate canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: pointer; touch-action: manipulation; }
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.875rem;
+  font-size: 0.9375rem;
+}
+.seg {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+}
+.seg button {
+  font: inherit;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.3rem 0.85rem;
+  cursor: pointer;
+}
+.seg button:hover { color: var(--ink); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.stat { color: var(--muted); font-variant-numeric: tabular-nums; }
+.fig figcaption {
+  margin-top: 0.75rem;
+  max-width: 36rem;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+.fig figcaption b { color: var(--ink); font-weight: 600; }
+
+/* Content sections: label column and text column, like a CV */
+.block {
+  border-top: 1px solid var(--rule);
+  padding-block: clamp(2.25rem, 5vw, 3.5rem);
+}
+@media (min-width: 52rem) {
+  .block {
+    display: grid;
+    grid-template-columns: var(--label) minmax(0, var(--measure));
+    column-gap: var(--gap);
+  }
+}
+.block > h2,
+.block > .side > h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.62;
+  margin: 0 0 1rem;
+}
+@media (min-width: 52rem) { .block > h2, .block > .side > h2 { margin: 0; } }
+
+/* Portrait in the label column of About */
+.portrait {
+  display: block;
+  width: 8rem;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--rule);
+  margin: 0 0 1.25rem;
+  background: var(--plate);
+}
+@media (min-width: 52rem) { .portrait { width: 100%; max-width: var(--label); margin: 1rem 0 0; } }
+
+.text p { margin: 0 0 1em; }
+.text > :last-child { margin-bottom: 0; }
+.text h3 {
+  font-size: 1.1875rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 2.25rem 0 0.5rem;
+}
+.text > h3:first-child { margin-top: 0; }
+.text .ref { color: var(--muted); font-size: 0.9375rem; }
+.kicker {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.15rem;
+}
+
+/* Dated lists: publications, teaching, background */
+.entries { list-style: none; margin: 0; padding: 0; }
+.entries > li {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  column-gap: 1rem;
+  padding-block: 0.5rem;
+}
+.entries .when {
+  color: var(--muted);
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  padding-top: 0.1rem;
+}
+.entries .what p { margin: 0; }
+.entries .title { font-weight: 560; }
+.entries .meta { color: var(--muted); font-size: 0.9375rem; }
+.entries .links { font-size: 0.9375rem; }
+.entries .links a { margin-right: 1rem; }
+.me { color: var(--ink); font-weight: 500; }
+.entries.skills > li { grid-template-columns: 7.5rem minmax(0, 1fr); }
+.entries.skills .when { color: var(--ink); font-weight: 560; white-space: normal; }
+@media (max-width: 30rem) {
+  .entries > li, .entries.skills > li { grid-template-columns: minmax(0, 1fr); }
+  .entries .when { padding-top: 0; }
+}
+
+.site-footer p {
+  margin: 0;
+  border-top: 1px solid var(--rule);
+  padding-block: 2rem 3rem;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+@media print {
+  .site-nav, .controls, .skip { display: none; }
+  .block { break-inside: avoid; }
+  a { color: inherit; }
+}
+</style>
+<noscript><style>.fig { display: none; }</style></noscript>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://faezehkhazaee97.github.io/#website",
+      "url": "https://faezehkhazaee97.github.io/",
+      "name": "Faezeh Khazaee",
+      "alternateName": ["Baran Khazaee", "Faezeh (Baran) Khazaee"],
+      "inLanguage": "en"
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://faezehkhazaee97.github.io/#profilepage",
+      "url": "https://faezehkhazaee97.github.io/",
+      "name": "Faezeh (Baran) Khazaee | Machine Learning for Biology",
+      "isPartOf": { "@id": "https://faezehkhazaee97.github.io/#website" },
+      "mainEntity": { "@id": "https://faezehkhazaee97.github.io/#person" },
+      "dateModified": "2026-11-22",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://faezehkhazaee97.github.io/#person",
+      "name": "Faezeh Khazaee",
+      "alternateName": ["Baran Khazaee", "F. Khazaee"],
+      "givenName": "Faezeh",
+      "familyName": "Khazaee",
+      "url": "https://faezehkhazaee97.github.io/",
+      "email": "mailto:fkhazaee@ucdavis.edu",
+      "image": "https://faezehkhazaee97.github.io/assets/photo.jpg",
+      "jobTitle": "Graduate Researcher",
+      "affiliation": { "@type": "CollegeOrUniversity", "name": "University of California, Davis" },
+      "description": "Machine learning researcher at UC Davis who builds transformers, self-supervised, and generative models for single-cell and genomic data.",
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "University of Tehran" },
+        { "@type": "CollegeOrUniversity", "name": "Sharif University of Technology" }
+      ],
+      "knowsAbout": [
+        "Machine learning",
+        "Deep learning",
+        "Transformers",
+        "Self-supervised learning",
+        "Representation learning",
+        "Generative models",
+        "Computational biology",
+        "Single-cell RNA sequencing",
+        "Regulatory genomics",
+        "Multiple-instance learning"
+      ],
+      "sameAs": [
+        "https://github.com/faezehkhazaee97",
+        "https://linkedin.com/in/faezeh-khazaee"
+      ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "name": "Epistemic Substitution: How Grokipedia's AI-Generated Encyclopedia Restructures Authority",
+      "author": [{ "@type": "Person", "name": "Aliakbar Mehdizadeh" }, { "@id": "https://faezehkhazaee97.github.io/#person" }, { "@type": "Person", "name": "Martin Hilbert" }],
+      "datePublished": "2025-12",
+      "url": "https://arxiv.org/abs/2512.03337"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="wrap site-nav">
+  <nav aria-label="Sections">
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#background">Background</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main" class="wrap">
+
+  <section class="hero" aria-labelledby="name">
+    <div>
+      <h1 id="name"><span>Faezeh</span> <span>Khazaee</span></h1>
+      <p class="role">Graduate researcher in the Quon Lab, UC Davis. Applying to Ph.D. programs in computer science.</p>
+      <p class="lede">I build transformers and other deep learning models that learn from biology: single cells, promoter DNA, and the regulatory signals that decide which genes turn on, with models whose predictions can be traced back to the cells and sequences behind them.</p>
+      <ul class="tags" aria-label="Interests">
+        <li style="--dot:#009E73">Biology</li>
+        <li style="--dot:#0072B2">AI</li>
+        <li style="--dot:#E69F00">Transformers</li>
+      </ul>
+      <ul class="profiles">
+        <li><a href="/assets/files/Faezeh_Khazaee_CV_ComputationalBiology.pdf">CV</a></li>
+        <li><a href="mailto:fkhazaee@ucdavis.edu">Email</a></li>
+        <li><a href="https://github.com/faezehkhazaee97" rel="me">GitHub</a></li>
+        <li><a href="https://linkedin.com/in/faezeh-khazaee" rel="me">LinkedIn</a></li>
+      </ul>
+    </div>
+
+    <figure class="fig" aria-labelledby="fig-caption">
+      <div class="plate">
+        <canvas id="dna" tabindex="0" role="img" aria-label="Animated DNA double helix. Arcs above it show where one attention head of a transformer looks from the selected base. Use the left and right arrow keys to move the selected base."></canvas>
+      </div>
+      <div class="controls">
+        <div class="seg" role="group" aria-label="Attention head">
+          <button type="button" data-head="local" aria-pressed="false">Local head</button>
+          <button type="button" data-head="motif" aria-pressed="true">Motif head</button>
+        </div>
+        <span class="stat" id="dna-stat" aria-live="polite">Attention on promoter motifs: 0%</span>
+      </div>
+      <figcaption id="fig-caption"><b>Fig. 1.</b> A transformer reads DNA as a sequence of tokens, and each attention head learns where to look. Tap a base to make it the query. The local head looks at nearby bases; the motif head jumps to promoter elements, the GC box, CAAT box, and TATA box, that sit upstream of where transcription starts. A hand-drawn toy in the spirit of my work on <a href="#research">transformers for promoter DNA</a>; the weights are illustrative, not from a trained model.</figcaption>
+    </figure>
+  </section>
+
+  <section class="block" id="about" aria-labelledby="about-h">
+    <div class="side">
+      <h2 id="about-h">About</h2>
+      <img class="portrait" src="/assets/photo.jpg" width="800" height="800" alt="Portrait of Faezeh Khazaee" decoding="async">
+    </div>
+    <div class="text">
+      <p>Faezeh (Baran) Khazaee is an M.Sc. student in Computer Science at the University of California, Davis (expected December 2026), where she works in the Quon Lab on machine learning and computational biology.</p>
+      <p>Her core strength is deep learning: transformers, self-supervised and representation learning, and generative modeling. She applies these to large-scale single-cell and genomic data, and earlier applied them to computer vision and multimodal reasoning. She cares about models that are interpretable, so a prediction about a patient or a gene can be traced to the cells and sequences that drove it.</p>
+      <p>She is applying to Ph.D. programs in computer science and is open to a broad range of research directions across machine learning and its applications. Before UC Davis, she studied information technology engineering at the University of Tehran and Sharif University of Technology, and built machine learning systems as a freelance data scientist.</p>
+    </div>
+  </section>
+
+  <section class="block" id="research" aria-labelledby="research-h">
+    <h2 id="research-h">Research</h2>
+    <div class="text">
+      <p>My projects share one question: what can a deep model learn about biology from raw data, and can we see how it learned it? Most pair a transformer or set-based architecture with a biological prediction task.</p>
+
+      <h3><span class="kicker">Single cells</span>Predicting phenotype from single-cell data</h3>
+      <p>A patient sample holds thousands of cells, but the label (healthy or diseased, responder or not) belongs to the whole sample. CELECTION treats each sample as a bag of cells and uses interpretable multiple-instance learning to predict the phenotype while pointing to the cells that drive it. I led the benchmarking, validation, figure design, and manuscript preparation, including comparisons against eight baseline methods across five sample-level prediction tasks.</p>
+      <p class="ref">Quon Lab, UC Davis. <a href="https://github.com/faezehkhazaee97/cellection-evaluation">Benchmark code</a></p>
+
+      <h3><span class="kicker">Gene regulation</span>Reading promoters with transformers</h3>
+      <p>ProMod is a self-supervised transformer trained on promoter DNA from more than 100 vertebrate species to predict gene expression. Promoters2Gene (P2G) goes further, combining DNA sequence with chromatin accessibility (ATAC-seq) and histone-modification (ChIP-seq) signals to predict gene expression in specific cell types.</p>
+      <p class="ref">Quon Lab, UC Davis</p>
+
+      <h3><span class="kicker">Tokenization</span>Learning where DNA tokens begin and end</h3>
+      <p>Language models split text into tokens, but DNA has no spaces. GenomeRL is an adaptive DNA tokenization framework in which a reinforcement-learning agent learns token boundaries for promoter detection.</p>
+      <p class="ref"><a href="https://github.com/faezehkhazaee97/GenomeRL">Code</a></p>
+
+      <h3><span class="kicker">Disease genetics</span>Rare variants and brain disorders</h3>
+      <p>Varformer is a set-based transformer that predicts rare-variant disease risk from regulatory and gene-context features, with a focus on somatic mosaicism in brain disorders.</p>
+      <p class="ref">Quon Lab, UC Davis. Manuscript in preparation</p>
+
+      <h3><span class="kicker">Genome editing</span>What makes CRISPR epigenome editing work</h3>
+      <p>EpiCRISPR studies the structural and guide-activity features that determine the outcome of CRISPR epigenome editing, using large-scale guide RNA libraries.</p>
+      <p class="ref">Quon Lab, UC Davis. Manuscript in preparation</p>
+
+      <h3><span class="kicker">Inside transformers</span>Boundary tokens as scaffolding</h3>
+      <p>Large language models lose accuracy abruptly on long, deterministic sequence tasks. AvalancheBreak asks whether periodic boundary or separator tokens delay that drop, and analyzes the behavior with a Sherrington–Kirkpatrick spin-glass lens on Qwen2.5-7B and 14B and Mistral-7B. The answer so far: boundaries act as scaffolding, not as added capability.</p>
+      <p class="ref"><a href="https://github.com/faezehkhazaee97/AvalancheBreak">Code</a></p>
+
+      <h3><span class="kicker">Earlier work</span>Vision and multimodal reasoning</h3>
+      <p>At the Robotics and Machine Intelligence Lab at the University of Tehran, I built a transformer-based multi-hop co-attention network for visual question answering that improved multimodal reasoning by 10%, and developed human-like non-player agents for a serious game, with vision-based perception and decision constraints learned from the behavior of 50 participants.</p>
+    </div>
+  </section>
+
+  <section class="block" id="publications" aria-labelledby="publications-h">
+    <h2 id="publications-h">Publications</h2>
+    <div class="text">
+      <h3>Preprints</h3>
+      <ol class="entries">
+        <li>
+          <span class="when">2025</span>
+          <div class="what">
+            <p class="title">Epistemic substitution: How Grokipedia’s AI-generated encyclopedia restructures authority</p>
+            <p class="meta">Aliakbar Mehdizadeh, <span class="me">Faezeh Khazaee</span>, and Martin Hilbert.</p>
+            <p class="links"><a href="https://arxiv.org/abs/2512.03337">arXiv:2512.03337</a></p>
+          </div>
+        </li>
+        <li>
+          <span class="when">Preprint</span>
+          <div class="what">
+            <p class="title">CELECTION: Interpretable multiple-instance learning for single-cell phenotype prediction</p>
+            <p class="meta">Quon Lab, UC Davis. Contributed benchmarking, validation, figures, writing, and peer-review revisions.</p>
+            <p class="links"><a href="https://github.com/faezehkhazaee97/cellection-evaluation">Benchmark code</a></p>
+          </div>
+        </li>
+      </ol>
+
+      <h3>In preparation</h3>
+      <ol class="entries">
+        <li>
+          <span class="when">2026</span>
+          <div class="what">
+            <p class="title">EpiCRISPR: Predicting CRISPR epigenome-editing outcomes</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2026</span>
+          <div class="what">
+            <p class="title">Varformer: Modeling somatic mosaicism in brain disorders</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2026</span>
+          <div class="what">
+            <p class="title">AvalancheBreak: The role of boundary and separator tokens in transformer models</p>
+            <p class="links"><a href="https://github.com/faezehkhazaee97/AvalancheBreak">Code</a></p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="skills" aria-labelledby="skills-h">
+    <h2 id="skills-h">Skills</h2>
+    <div class="text">
+      <ul class="entries skills">
+        <li>
+          <span class="when">Deep learning</span>
+          <div class="what"><p>Transformers; self-supervised and representation learning; generative and foundation models; multiple-instance and set-based learning; SFT and RLHF</p></div>
+        </li>
+        <li>
+          <span class="when">Biology</span>
+          <div class="what"><p>Single-cell RNA-seq, Scanpy, scverse, AnnData, single-cell atlases; multi-omics integration; ATAC-seq, ChIP-seq, regulatory genomics</p></div>
+        </li>
+        <li>
+          <span class="when">Frameworks</span>
+          <div class="what"><p>PyTorch, JAX, TensorFlow, Triton, scikit-learn, NumPy, pandas</p></div>
+        </li>
+        <li>
+          <span class="when">Programming</span>
+          <div class="what"><p>Python, R, SQL, MATLAB, C, JavaScript, Bash</p></div>
+        </li>
+        <li>
+          <span class="when">Computing</span>
+          <div class="what"><p>Git, SLURM and high-performance computing, Docker, AWS, MLflow, Azure DevOps, Power BI</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="teaching" aria-labelledby="teaching-h">
+    <h2 id="teaching-h">Teaching</h2>
+    <div class="text">
+      <ol class="entries">
+        <li>
+          <span class="when">2026</span>
+          <div class="what">
+            <p class="title">Teaching assistant, University of California, Davis</p>
+            <p class="meta">Introduction to Programming (ECS 32A), Summer 2026</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2018–2023</span>
+          <div class="what">
+            <p class="title">Teaching assistant, University of Tehran and Sharif University of Technology</p>
+            <p class="meta">Neural Networks; Multimedia Systems; Information Retrieval; Special Topics in Computer Science. Supported more than 50 students.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="background" aria-labelledby="background-h">
+    <h2 id="background-h">Background</h2>
+    <div class="text">
+      <h3>Education</h3>
+      <ol class="entries">
+        <li>
+          <span class="when">2026</span>
+          <div class="what">
+            <p class="title">M.Sc., Computer Science</p>
+            <p class="meta">University of California, Davis. Expected December 2026. GPA 4.0/4.0.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2023</span>
+          <div class="what">
+            <p class="title">M.Sc., Information Technology Engineering</p>
+            <p class="meta">University of Tehran. GPA 18.5/20.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2019</span>
+          <div class="what">
+            <p class="title">B.Sc., Information Technology Engineering</p>
+            <p class="meta">Sharif University of Technology. GPA 17.25/20.</p>
+          </div>
+        </li>
+      </ol>
+
+      <h3>Research positions</h3>
+      <ol class="entries">
+        <li>
+          <span class="when">2023–now</span>
+          <div class="what">
+            <p class="title">Graduate researcher</p>
+            <p class="meta">Quon Lab, University of California, Davis</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2020–2023</span>
+          <div class="what">
+            <p class="title">Graduate research assistant</p>
+            <p class="meta">Robotics and Machine Intelligence Lab, University of Tehran</p>
+          </div>
+        </li>
+      </ol>
+
+      <h3>Industry</h3>
+      <ol class="entries">
+        <li>
+          <span class="when">2020–2023</span>
+          <div class="what">
+            <p class="title">Freelance developer and data scientist</p>
+            <p class="meta">Machine learning pipelines, recommender systems, and analytics dashboards for more than 10 real-estate and e-commerce clients, using Python, SQL, and deep learning.</p>
+          </div>
+        </li>
+      </ol>
+
+      <h3>Honors</h3>
+      <ol class="entries">
+        <li>
+          <span class="when">2020</span>
+          <div class="what"><p class="title">Ranked 7th nationwide in the national M.Sc. entrance exam</p></div>
+        </li>
+        <li>
+          <span class="when">2015</span>
+          <div class="what"><p class="title">Top 1% in the national undergraduate entrance exam</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="block" id="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Contact</h2>
+    <div class="text">
+      <p>Email is the best way to reach me: <a href="mailto:fkhazaee@ucdavis.edu">fkhazaee@ucdavis.edu</a>. Code is on <a href="https://github.com/faezehkhazaee97" rel="me">GitHub</a>, and my career history is on <a href="https://linkedin.com/in/faezeh-khazaee" rel="me">LinkedIn</a>. My full record is in my <a href="/assets/files/Faezeh_Khazaee_CV_ComputationalBiology.pdf">CV (PDF)</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap site-footer">
+  <p>© 2026 Faezeh Khazaee. Updated November 2026.</p>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var canvas = document.getElementById("dna");
+  if (!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext("2d");
+  var plate = canvas.parentNode;
+  var statEl = document.getElementById("dna-stat");
+  var headButtons = document.querySelectorAll("[data-head]");
+  var reduceMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var darkMQ = window.matchMedia("(prefers-color-scheme: dark)");
+
+  // A toy promoter, written 5' to 3', ending where transcription starts.
+  var SEQ = "ATGGGCGGATCGTCCAATCAGCTGACGTATAAAGGCTGCA";
+  var COMP = { A: "T", T: "A", C: "G", G: "C" };
+  var MOTIFS = [
+    { name: "GC box", start: SEQ.indexOf("GGGCGG"), len: 6, weight: 1.9 },
+    { name: "CAAT box", start: SEQ.indexOf("CCAAT"), len: 5, weight: 2.1 },
+    { name: "TATA box", start: SEQ.indexOf("TATAAA"), len: 6, weight: 2.6 }
+  ];
+  var N = SEQ.length;
+  var inMotif = [], sal = [], i, m;
+  for (i = 0; i < N; i++) { inMotif.push(-1); sal.push(0); }
+  for (m = 0; m < MOTIFS.length; m++) {
+    for (i = MOTIFS[m].start; i < MOTIFS[m].start + MOTIFS[m].len; i++) { inMotif[i] = m; sal[i] = MOTIFS[m].weight; }
+  }
+
+  var W = 0, H = 0, DPR = 1;
+  var s = {
+    head: "motif", query: 30, userPicked: false,
+    weights: [], shown: [], phase: 0, last: 0, nextHop: 0,
+    raf: 0, onscreen: false
+  };
+  for (i = 0; i < N; i++) { s.weights.push(0); s.shown.push(0); }
+
+  function palette() {
+    var dark = darkMQ.matches;
+    return {
+      base: dark
+        ? { A: "#2fc79a", C: "#56B4E9", G: "#E69F00", T: "#F07B4A" }
+        : { A: "#009E73", C: "#0072B2", G: "#E69F00", T: "#D55E00" },
+      strand: dark ? "rgba(229,238,236,0.55)" : "rgba(20,32,31,0.45)",
+      arc: dark ? "79,209,193" : "0,117,111",
+      ink: dark ? "#e5eeec" : "#14201f",
+      muted: dark ? "#97a6a2" : "#56645f",
+      plate: dark ? "#141d21" : "#f1f6f5"
+    };
+  }
+
+  function computeWeights() {
+    var logits = [], max = -Infinity, sum = 0, j;
+    for (j = 0; j < N; j++) {
+      var l;
+      if (s.head === "local") {
+        var d = Math.abs(j - s.query);
+        l = -d / 1.3 + (j === s.query ? -0.6 : 0);
+      } else {
+        l = sal[j] + (j === s.query ? 0.4 : 0) - (inMotif[j] >= 0 && inMotif[j] === inMotif[s.query] ? 0.5 : 0);
+      }
+      logits.push(l);
+      if (l > max) max = l;
+    }
+    for (j = 0; j < N; j++) { logits[j] = Math.exp(logits[j] - max); sum += logits[j]; }
+    var onMotif = 0;
+    for (j = 0; j < N; j++) {
+      s.weights[j] = logits[j] / sum;
+      if (inMotif[j] >= 0) onMotif += s.weights[j];
+    }
+    statEl.textContent = "Attention on promoter motifs: " + Math.round(onMotif * 100) + "%";
+    canvas.setAttribute("aria-label", "DNA double helix. Query base " + (s.query + 1) + " of " + N + " (" + SEQ[s.query] +
+      "). The " + (s.head === "motif" ? "motif" : "local") + " attention head puts " + Math.round(onMotif * 100) +
+      "% of its attention on promoter motifs. Use the left and right arrow keys to move the query base.");
+  }
+
+  function measure() {
+    var r = plate.getBoundingClientRect();
+    var w = Math.max(200, r.width), h = Math.max(150, r.height);
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    if (w === W && h === H && dpr === DPR) return false;
+    W = w; H = h; DPR = dpr;
+    canvas.width = Math.round(W * DPR);
+    canvas.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    return true;
+  }
+
+  // Geometry of the helix: bases run left to right, strands twist around a center line.
+  function geom() {
+    var padX = Math.max(18, W * 0.06);
+    var step = (W - 2 * padX) / (N - 1);
+    var cy = H * 0.66;
+    var amp = Math.min(H * 0.13, 46);
+    return { padX: padX, step: step, cy: cy, amp: amp, twist: 0.6 };
+  }
+  function xAt(g, k) { return g.padX + k * g.step; }
+
+  function draw() {
+    var c = palette(), g = geom(), k;
+    ctx.clearRect(0, 0, W, H);
+
+    // Strand points
+    var top = [], bot = [];
+    for (k = 0; k < N; k++) {
+      var a = s.phase + k * g.twist;
+      top.push({ x: xAt(g, k), y: g.cy - Math.sin(a) * g.amp, z: Math.cos(a) });
+      bot.push({ x: xAt(g, k), y: g.cy + Math.sin(a) * g.amp, z: -Math.cos(a) });
+    }
+
+    // Base-pair rungs, colored half by half
+    var rungW = Math.max(2, Math.min(5, g.step * 0.42));
+    ctx.lineCap = "round";
+    for (k = 0; k < N; k++) {
+      var t = top[k], b = bot[k], mx = (t.x + b.x) / 2, my = (t.y + b.y) / 2;
+      var depth = 0.45 + 0.55 * Math.abs(Math.cos(s.phase + k * g.twist));
+      var hl = s.shown[k] / (maxShown() || 1);
+      ctx.globalAlpha = Math.min(1, depth * (0.55 + 0.45 * hl) + (k === s.query ? 0.4 : 0));
+      ctx.lineWidth = rungW;
+      ctx.strokeStyle = c.base[SEQ[k]];
+      ctx.beginPath(); ctx.moveTo(t.x, t.y); ctx.lineTo(mx, my); ctx.stroke();
+      ctx.strokeStyle = c.base[COMP[SEQ[k]]];
+      ctx.beginPath(); ctx.moveTo(mx, my); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+
+    // Backbones: back segments first, then front segments
+    function strand(pts, front) {
+      ctx.strokeStyle = c.strand;
+      for (var j = 0; j < pts.length - 1; j++) {
+        var zf = (pts[j].z + pts[j + 1].z) / 2;
+        if ((zf >= 0) !== front) continue;
+        ctx.lineWidth = front ? 2.6 : 1.4;
+        ctx.globalAlpha = front ? 1 : 0.55;
+        ctx.beginPath(); ctx.moveTo(pts[j].x, pts[j].y); ctx.lineTo(pts[j + 1].x, pts[j + 1].y); ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    }
+    strand(top, false); strand(bot, false);
+    strand(top, true); strand(bot, true);
+
+    // Sequence letters along the bottom, when there is room
+    var lettersY = g.cy + g.amp + Math.max(16, H * 0.07);
+    var fontPx = Math.max(9, Math.min(14, g.step * 0.95));
+    var showLetters = g.step >= 9;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    if (showLetters) {
+      ctx.font = "600 " + fontPx + "px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
+      for (k = 0; k < N; k++) {
+        ctx.fillStyle = c.base[SEQ[k]];
+        ctx.globalAlpha = k === s.query ? 1 : 0.8;
+        ctx.fillText(SEQ[k], xAt(g, k), lettersY);
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    // Motif brackets and labels
+    var brY = lettersY + (showLetters ? fontPx * 0.9 : 0);
+    var labelPx = Math.max(10, Math.min(13, W / 42));
+    ctx.font = labelPx + "px Newsreader, Georgia, serif";
+    ctx.strokeStyle = c.muted;
+    ctx.fillStyle = c.muted;
+    ctx.lineWidth = 1;
+    for (m = 0; m < MOTIFS.length; m++) {
+      var x0 = xAt(g, MOTIFS[m].start) - g.step * 0.4;
+      var x1 = xAt(g, MOTIFS[m].start + MOTIFS[m].len - 1) + g.step * 0.4;
+      ctx.beginPath();
+      ctx.moveTo(x0, brY - 3); ctx.lineTo(x0, brY); ctx.lineTo(x1, brY); ctx.lineTo(x1, brY - 3);
+      ctx.stroke();
+      ctx.fillText(MOTIFS[m].name, (x0 + x1) / 2, brY + labelPx * 0.95);
+    }
+    // Transcription start
+    var tx = xAt(g, N - 1) + g.step * 0.2;
+    ctx.textAlign = "right";
+    ctx.fillText("gene →", W - 8, 14 + labelPx * 0.2);
+    ctx.textAlign = "left";
+    ctx.fillText("5′", 6, g.cy - g.amp - 10);
+    ctx.textAlign = "center";
+
+    // Attention arcs from the query base, rising above the helix
+    var baseY = g.cy - g.amp - 6;
+    var qx = xAt(g, s.query);
+    var mxw = maxShown() || 1;
+    ctx.lineCap = "round";
+    for (k = 0; k < N; k++) {
+      if (k === s.query) continue;
+      var w = s.shown[k] / mxw;
+      if (w < 0.12) continue;
+      var kx = xAt(g, k);
+      var span = Math.abs(kx - qx);
+      var lift = Math.min(baseY - 26, 18 + span * 0.42);
+      ctx.strokeStyle = "rgba(" + c.arc + "," + (0.12 + 0.8 * Math.pow(w, 1.3)).toFixed(3) + ")";
+      ctx.lineWidth = 0.8 + 4.2 * w;
+      ctx.beginPath();
+      ctx.moveTo(qx, baseY);
+      ctx.bezierCurveTo(qx, baseY - lift, kx, baseY - lift, kx, baseY);
+      ctx.stroke();
+    }
+
+    // Query marker
+    ctx.fillStyle = c.ink;
+    ctx.beginPath();
+    ctx.arc(qx, baseY, 4.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = c.plate;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.font = "italic " + labelPx + "px Newsreader, Georgia, serif";
+    ctx.fillStyle = c.ink;
+    ctx.textAlign = "left";
+    ctx.fillText("query", Math.min(qx + 8, W - 40), baseY + 1);
+    ctx.textAlign = "center";
+  }
+
+  function maxShown() {
+    var mx = 0;
+    for (var j = 0; j < N; j++) if (j !== s.query && s.shown[j] > mx) mx = s.shown[j];
+    return mx;
+  }
+
+  function settle(rate) {
+    var moving = false;
+    for (var j = 0; j < N; j++) {
+      var d = s.weights[j] - s.shown[j];
+      if (Math.abs(d) > 1e-4) moving = true;
+      s.shown[j] += d * rate;
+    }
+    return moving;
+  }
+
+  // Positions the automatic tour visits: one in each motif, plus a few in between.
+  var TOUR = [30, 20, 4, 15, 36, 11, 25];
+  var tourAt = 0;
+
+  function frame(now) {
+    s.raf = 0;
+    if (!s.onscreen || document.hidden) return;
+    var dt = s.last ? Math.min(64, now - s.last) : 16;
+    s.last = now;
+    s.phase += dt * 0.0007;
+    if (!s.userPicked && now >= s.nextHop) {
+      tourAt = (tourAt + 1) % TOUR.length;
+      setQuery(TOUR[tourAt], false);
+      s.nextHop = now + 2600;
+    }
+    settle(1 - Math.pow(0.9, dt / 16));
+    draw();
+    s.raf = requestAnimationFrame(frame);
+  }
+
+  function schedule() {
+    if (reduceMQ.matches) { settle(1); draw(); return; }
+    if (!s.raf && s.onscreen && !document.hidden) { s.last = 0; s.raf = requestAnimationFrame(frame); }
+  }
+
+  function setQuery(q, byUser) {
+    q = Math.max(0, Math.min(N - 1, q));
+    if (q !== s.query) { for (var j = 0; j < N; j++) s.shown[j] = 0; }
+    s.query = q;
+    if (byUser) s.userPicked = true;
+    computeWeights();
+    if (reduceMQ.matches) { settle(1); draw(); }
+  }
+
+  function setHead(h) {
+    s.head = h;
+    for (var j = 0; j < headButtons.length; j++) {
+      headButtons[j].setAttribute("aria-pressed", String(headButtons[j].getAttribute("data-head") === h));
+    }
+    computeWeights();
+    if (reduceMQ.matches) { settle(1); draw(); }
+  }
+
+  canvas.addEventListener("click", function (ev) {
+    var r = canvas.getBoundingClientRect(), g = geom();
+    var k = Math.round((ev.clientX - r.left - g.padX) / g.step);
+    setQuery(k, true);
+  });
+  canvas.addEventListener("keydown", function (ev) {
+    if (ev.key === "ArrowLeft") { setQuery(s.query - 1, true); ev.preventDefault(); }
+    else if (ev.key === "ArrowRight") { setQuery(s.query + 1, true); ev.preventDefault(); }
+  });
+  for (var b = 0; b < headButtons.length; b++) {
+    headButtons[b].addEventListener("click", function () { setHead(this.getAttribute("data-head")); });
+  }
+
+  function redrawStatic() { if (reduceMQ.matches || !s.raf) draw(); }
+  if (darkMQ.addEventListener) darkMQ.addEventListener("change", redrawStatic);
+  else if (darkMQ.addListener) darkMQ.addListener(redrawStatic);
+
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(function () { if (measure()) draw(); }).observe(plate);
+  }
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      s.onscreen = entries[0].isIntersecting;
+      schedule();
+    }, { threshold: 0.15 }).observe(plate);
+  } else {
+    s.onscreen = true;
+  }
+  document.addEventListener("visibilitychange", schedule);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { draw(); });
+
+  measure();
+  s.phase = 0.9;
+  setQuery(TOUR[0], false);
+  settle(1);
+  draw();
+  schedule();
+})();
+</script>
+</body>
+</html>
